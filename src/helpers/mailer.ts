@@ -5,7 +5,6 @@ import bcrypt from "bcryptjs"
 export const sendEmail = async({email,emailType,userId}:any)=>{
 try {
 
-    // configure mail usage here
     const hashedToken = await bcrypt.hash(userId.toString(),10)
 
     if(emailType === "VERIFY"){
@@ -18,8 +17,7 @@ try {
         )
     }
 
-      
-
+    
     var transporter = nodemailer.createTransport({
     host: "sandbox.smtp.mailtrap.io",
     port: 2525,
