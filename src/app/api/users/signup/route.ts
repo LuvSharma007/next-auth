@@ -33,6 +33,8 @@ export async function POST(request:NextRequest) {
         // send verificatoin email
 
         await sendEmail({email,emailType:"VERIFY",userId:createdUser._id})
+        console.log("email sent successfully to mail trap");
+        
 
         return NextResponse.json({
             message:"User registered successfully",

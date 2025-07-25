@@ -8,13 +8,13 @@ try {
     const hashedToken = await bcrypt.hash(userId.toString(),10)
 
     if(emailType === "VERIFY"){
-        await User.findByIdAndUpdate(userId,
-            {verifyToken:hashedToken,verifyTokenEXpiry:Date.now() + 3600000 }
-        )
+        await User.findByIdAndUpdate(userId,{
+            $set:{verifyToken:hashedToken,verifyTokenEXpiry:Date.now() + 3600000 }
+    })
     }else if(emailType === "RESET"){
-        await User.findByIdAndUpdate(userId,
-            {forgotpPasswordToken:hashedToken,forgotpPasswordTokenExpiry:Date.now() + 3600000 }
-        )
+        await User.findByIdAndUpdate(userId,{
+            $set:{forgotpPasswordToken:hashedToken,forgotpPasswordTokenExpiry:Date.now() + 3600000 }
+    })
     }
 
     
