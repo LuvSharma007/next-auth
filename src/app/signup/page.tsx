@@ -47,10 +47,10 @@ export default function SignupPage(){
   return (
     <div className='flex flex-col items-center justify-center min-h-screen py-2 font-sans'>
       <h1 className='text-4xl mb-4'>{loading ? "Processing":"Signup"}</h1>
-      <div className='flex flex-col items-center justify-center gap-2 border-white border-2 w-100 h-100 text-2xl'>
+      <div className='flex flex-col items-center justify-center gap-2 border-white border-2 w-100 h-100 text-2xl rounded'>
       <label htmlFor="username">Username</label>
       <input
-      className='border-1 border-white'
+      className='border-1 border-white rounded'
       id='username'
       onChange={(e)=>setUser({...user,username:e.target.value})}
       value={user.username}
@@ -59,7 +59,7 @@ export default function SignupPage(){
 
       <label htmlFor="email">Email</label>
       <input
-      className='border-1 border-white'
+      className='border-1 border-white rounded'
       id='email'
       value={user.email}
       onChange={(e)=>setUser({...user,email:e.target.value})}
@@ -68,13 +68,13 @@ export default function SignupPage(){
 
       <label htmlFor="password">password</label>
       <input
-      className='border-1 border-white'
+      className='border-1 border-white rounded'
       id='password'
       value={user.password}
       onChange={(e)=>setUser({...user,password:e.target.value})}
       placeholder='password'
       type="password" />
-      <h1 className='mt-4 '>Already have account , 
+      <h1 className='mt-4 '>Already have an account , 
       <Link className='text-bold' href={"/login"}>
         Login
       </Link>
