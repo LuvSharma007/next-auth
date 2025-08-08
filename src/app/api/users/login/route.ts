@@ -6,7 +6,7 @@ import {NextRequest , NextResponse} from 'next/server';
 import jwt from "jsonwebtoken"
 
 
-export async function POST(request:Request){
+export async function POST(request:NextRequest){
     connectDB();
     try {
         const reqBody = await request.json()
@@ -22,7 +22,7 @@ export async function POST(request:Request){
         }
 
         const token = jwt.sign({
-            id:user._id,
+            _id:user._id,
             username:user.username,
             email:user.email,
         },
@@ -35,11 +35,14 @@ export async function POST(request:Request){
             success:true
         })
 
-        return response.cookies.set("token",token,{
+        response.cookies.set("token",token,{
             httpOnly:true
         });
 
+        return response;
+
     } catch (error:any) {
-        return NextResponse.json({error:error.message},{status:500})
+        console.log("Error:",error);        
+        return NextResponse.json({error:"Error login user"},{status:500})
     }
 }
